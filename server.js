@@ -1,13 +1,13 @@
 require('dotenv').config();
 const express = require('express');
-const morgan = require('morgan');
+// const morgan = require('morgan');
 const path = require('path');
 const app = express();
 const port = process.env.PORT || 3000;
 const fetch = require('node-fetch');
-const newRelic = require("newRelic");
+const newRelic = require("newrelic");
 
-app.use(morgan('dev'));
+// app.use(morgan('dev'));
 app.use(express.static(path.join(__dirname, 'public')));
 
 // AVH
@@ -50,7 +50,7 @@ app.use(express.static(path.join(__dirname, 'public')));
 // Michelle
 // http://ec2-13-57-32-246.us-west-1.compute.amazonaws.com/?id=2
 app.get('/get', (req, res) => {
-  fetch(`http://localhost:9001/get/?id=${req.query.id}`)
+  fetch(`http://ec2-54-153-66-98.us-west-1.compute.amazonaws.com:9001/get/?id=${req.query.id}`)
     .then(response => {
       return response.json()
     }).then(json => {
